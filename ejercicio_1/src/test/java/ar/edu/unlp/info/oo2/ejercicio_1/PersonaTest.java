@@ -9,27 +9,29 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class PersonaTest {
-	
-//	Persona james;
-//	Persona guido;
 	Twitter twitter;
+	Usuario user1;
+	Usuario user2;
 	
 	@BeforeEach
 	void setUp() throws Exception {
-//		james = new Persona("James", "Glossing");
-//		guido = new Persona("Guido", "van Rossum");
 		twitter = new Twitter();
 		twitter.addUser("leandro");
 		twitter.addUser("delicia");
 		twitter.addUser("micaela");
 		twitter.addUser("leandro");
 		twitter.addUser("hector");
+		user1 = twitter.getUser("leandro");
+		user2 = twitter.getUser("micaela");
 	}
     @Test
-    public void testNombreCompleto() {
-//        assertEquals("Glossing, James", james.getNombreCompleto());
-//        assertEquals("van Rossum, Guido", guido.getNombreCompleto());
+    public void testGetUsers() {
     	  assertEquals(twitter.getUsers().size(), 4);
         
+    }
+    @Test
+    public void testGetScreenName() {
+    	assertEquals(user1.getScreenName(), "leandro");
+    	assertEquals(user2.getScreenName(), "micaela");
     }
 }

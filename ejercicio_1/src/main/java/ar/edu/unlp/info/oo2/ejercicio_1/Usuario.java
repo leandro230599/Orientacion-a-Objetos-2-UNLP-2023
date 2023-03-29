@@ -9,10 +9,18 @@ public class Usuario {
 	
 	public Usuario (String screenName) {
 		this.screenName = screenName;
+		this.tweets = null;
 		
 	}
 	
 	public String getScreenName() {
 		return this.screenName;
+	}
+	
+	public List<Tweet> getTweets(){
+		return this.tweets;
+	}
+	
+	public void twittear(String text) {
 	}
 }
