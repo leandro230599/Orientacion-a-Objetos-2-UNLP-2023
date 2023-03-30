@@ -1,19 +1,19 @@
 package ar.edu.unlp.info.oo2.ejercicio_1;
 
 public class ReTweet extends Tweet{
-	private Usuario origen;
+	private Tweet reference;
 	
-	public ReTweet (String text, Usuario user) {
+	public ReTweet (String text, Tweet reference) {
 		super(text);
-		this.setOrigen(user);
+		this.setReference(reference);
 	}
 	
-	public Usuario getOrigen() {
-		return origen;
+	public Tweet getReference() {
+		return this.reference;
 	}
 
-	public void setOrigen(Usuario origen) {
-		this.origen = origen;
+	public void setReference(Tweet reference) {
+		this.reference = reference;
 	}
 
 	

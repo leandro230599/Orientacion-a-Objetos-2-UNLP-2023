@@ -21,6 +21,15 @@ public class Usuario {
 		return this.tweets;
 	}
 	
-	public void twittear(String text) {
+	public Tweet twittear(String text) {
+		Tweet tweet = new Tweet(text);
+		tweets.add(tweet);
+		return tweet;
+	}
+	
+	public Tweet retwittear(Tweet tweet) {
+		ReTweet retweet = new ReTweet(tweet.getText(), tweet);
+		tweets.add(retweet);
+		return retweet;
 	}
 }
