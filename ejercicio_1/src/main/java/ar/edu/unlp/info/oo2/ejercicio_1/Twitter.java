@@ -15,7 +15,7 @@ public class Twitter {
 	public void addUser (String screenName) {
 		boolean existe = this.users.stream().anyMatch(x -> x.getScreenName() == screenName);
 		if (existe) 
-			System.out.println("ERROR, YA EXISTE "+screenName);
+			throw new IllegalArgumentException("El usuario "+screenName+" ya existe, ingrese un screenName nuevo");
 		else {
 			this.users.add(new Usuario(screenName));
 		}
@@ -26,9 +26,19 @@ public class Twitter {
 	}
 	
 	public Usuario getUser(String screenName) {
-		Optional<Usuario> user = this.getUsers().stream()
+		Usuario user = this.getUsers().stream()
 												.filter(x -> x.getScreenName() == screenName)
-												.findFirst();
-		return user.isPresent() ? user.get() : new Usuario("NO EXISTE");
+												.findFirst()
+												.orElse(null);
+		if (user == null) {
+			throw new IllegalArgumentException("El usuario "+screenName+" no existe");
+		}
+		return user;
+	}
+	
+	public void deleteUser (String screenName) {
+		Usuario userDelete = this.getUser(screenName);
+		userDelete.deleteTweets();
+		System.out.println(this.users.remove(userDelete));
 	}
 }

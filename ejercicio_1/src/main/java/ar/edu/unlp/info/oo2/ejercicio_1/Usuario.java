@@ -1,5 +1,6 @@
 package ar.edu.unlp.info.oo2.ejercicio_1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
@@ -9,7 +10,7 @@ public class Usuario {
 	
 	public Usuario (String screenName) {
 		this.screenName = screenName;
-		this.tweets = null;
+		this.tweets = new ArrayList<Tweet>();
 		
 	}
 	
@@ -17,12 +18,16 @@ public class Usuario {
 		return this.screenName;
 	}
 	
+	
 	public List<Tweet> getTweets(){
 		return this.tweets;
 	}
 	
 	public Tweet twittear(String text) {
-		Tweet tweet = new Tweet(text);
+		if ((text == null) || (text.length() < 1) || (text.length() > 280)) {
+			throw new IllegalArgumentException("El tweet debe contener entre 1 y 280 caracteres");
+		}
+		Tweet tweet = new Tweet(text,this);
 		tweets.add(tweet);
 		return tweet;
 	}
@@ -31,5 +36,9 @@ public class Usuario {
 		ReTweet retweet = new ReTweet(tweet.getText(), tweet);
 		tweets.add(retweet);
 		return retweet;
+	}
+	
+	public void deleteTweets() {
+		tweets = null;
 	}
 }

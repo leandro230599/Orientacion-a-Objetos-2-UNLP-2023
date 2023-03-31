@@ -4,7 +4,7 @@ public class ReTweet extends Tweet{
 	private Tweet reference;
 	
 	public ReTweet (String text, Tweet reference) {
-		super(text);
+		super(text,reference.getUser());
 		this.setReference(reference);
 	}
 	
