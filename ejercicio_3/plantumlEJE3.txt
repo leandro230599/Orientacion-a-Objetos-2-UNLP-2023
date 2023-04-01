@@ -1,0 +1,35 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class MediaPlayer <<Client>>{
+  +List<Media> getMedia()
+  +void addMedia(Media media)
+}
+
+class Media <<Target>>{
+  +String play()
+}
+
+class Audio {
+  +String play()
+}
+
+class VideoFile {
+  +String play()
+}
+
+class AdapterVideoStream <<Adapter>>{
+  +String play()
+}
+
+class VideoStream <<Adaptee>>{
+  +String reproduce()
+}
+
+
+MediaPlayer --> Media : media*
+Media <|-- Audio
+Media <|-- VideoFile
+Media <|-- AdapterVideoStream
+AdapterVideoStream --> VideoStream : videostream
+@enduml

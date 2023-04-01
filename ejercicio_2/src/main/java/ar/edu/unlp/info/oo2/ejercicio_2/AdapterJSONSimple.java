@@ -5,7 +5,7 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class Adapter extends VoorheesExporter {
+public class AdapterJSONSimple extends VoorheesExporter {
 	
 
 	public String exportar(List<Socio> socios) {

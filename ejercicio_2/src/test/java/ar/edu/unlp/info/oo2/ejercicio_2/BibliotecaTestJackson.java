@@ -2,12 +2,14 @@ package ar.edu.unlp.info.oo2.ejercicio_2;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-class BibliotecaTest2 {
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class BibliotecaTestJackson {
 	
 	Biblioteca biblioteca;
 	
@@ -16,11 +18,11 @@ class BibliotecaTest2 {
 		biblioteca = new Biblioteca();
 		biblioteca.agregarSocio(new Socio("Arya Stark", "needle@stark.com", "5234-5"));
 		biblioteca.agregarSocio(new Socio("Tyron Lannister", "tyron@thelannisters.com",  "2345-2"));
-		biblioteca.setExporter(new Adapter());
+		biblioteca.setExporter(new AdapterJackson());
 	}
 	@Test
-	void testJSONSimple() throws ParseException {
-		JSONParser jsonparser = new JSONParser();
+	void testJackson(){
+		ObjectMapper mapper = new ObjectMapper();
 		String texto = "[\r\n"
 				+ "    {\r\n"
 				+ "   	 \"nombre\": \"Arya Stark\",\r\n"
@@ -33,7 +35,16 @@ class BibliotecaTest2 {
 				+ "   	 \"legajo\": \"2345-2\"\r\n"
 				+ "    }\r\n"
 				+ "]";
-		assertEquals(jsonparser.parse(texto), jsonparser.parse(biblioteca.exportarSocios()));
+		try {
+			Object json = mapper.readValue(biblioteca.exportarSocios(), Object.class);
+			Object jsonTexto = mapper.readValue(texto, Object.class);
+			assertEquals(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonTexto),
+					     mapper.writerWithDefaultPrettyPrinter().writeValueAsString(json));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//assertEquals(jsonparser.parse(texto), jsonparser.parse(biblioteca.exportarSocios()));
 	}
 
 }

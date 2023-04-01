@@ -1,0 +1,46 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Biblioteca {
+  +void agregarSocio(Socio socio)
+  +String exportarSocios()
+  +VoorheesExporter getExporter()
+  +void setExporter(VoorheesExporter exporter)
+}
+
+class Socio {
+  -String nombre
+  -String email
+  -String legajo
+  +String getNombre()
+  +void setNombre(String nombre)
+  +String getEmail()
+  +void setEmail(String email)
+  +String getLegajo()
+  +void setLegajo(String legajo)
+}
+
+class VoorheesExporter {
+  -String exportar(Socio socio)
+  +String exportar(List<Socio> socios)
+}
+
+class AdapterJackson {
+  +String exportar(List<Socio> socios)
+}
+
+class AdapterJSONSimple {
+  +String exportar(List<Socio> socios)
+}
+
+class JSONSimple
+
+class Jackson
+
+Biblioteca --> Socio : socios*
+Biblioteca --> VoorheesExporter : exporter
+VoorheesExporter <|-- AdapterJackson
+VoorheesExporter <|-- AdapterJSONSimple
+AdapterJackson ..> Jackson
+AdapterJSONSimple ..> JSONSimple
+@enduml

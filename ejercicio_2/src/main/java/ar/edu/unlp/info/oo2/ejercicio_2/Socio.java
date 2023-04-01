@@ -2,8 +2,8 @@ package ar.edu.unlp.info.oo2.ejercicio_2;
 
 public class Socio {
 	private String nombre;
-	private String legajo;
 	private String email;
+	private String legajo;
 
 
 	public Socio(String nombre, String email, String legajo) {
