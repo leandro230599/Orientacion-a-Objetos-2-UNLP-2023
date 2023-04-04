@@ -19,5 +19,13 @@ public class Topografia {
 	public Double getProporcionTierra() {
 		return this.topografias.getProporcionTierra();
 	}
+	
+	public boolean equals(Topografia t) {
+		if ((t.getProporcionAgua().equals(this.topografias.getProporcionAgua())) && 
+		   (t.getProporcionTierra().equals(this.topografias.getProporcionTierra()))){
+			return true;
+		}
+		return false;
+	}
 
 }

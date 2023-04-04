@@ -1,0 +1,51 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Topografia {
+  +void agregarTopografia(Tipo topografia)
+  +Double getProporcionAgua()
+  +Double getProporcionTierra()
+  +boolean equals(Topografia t)
+}
+
+interface Tipo {
+  +Double getProporcionTierra()
+  +Double getProporcionAgua()
+}
+
+class Simple implements Tipo {
+  +Double getProporcionTierra()
+  +Double getProporcionAgua()
+  +void setTerreno(Terreno terreno)
+}
+
+class Mixto implements Tipo {
+  +void add (Tipo child1, Tipo child2, Tipo child3, Tipo child4)
+  +Double getProporcionTierra()
+  +Double getProporcionAgua()
+}
+
+class Agua implements Terreno {
+  +Double getProporcionTierra()
+  +Double getProporcionAgua()
+}
+
+class Tierra implements Terreno {
+  +Double getProporcionTierra()
+  +Double getProporcionAgua()
+}
+
+class Pantano implements Terreno {
+  +Double getProporcionTierra()
+  +Double getProporcionAgua()
+}
+
+interface Terreno {
+  +Double getProporcionTierra()
+  +Double getProporcionAgua()
+}
+
+Topografia --> Tipo : tipografia
+Simple --> Terreno : terreno
+Mixto --> Tipo : children
+@enduml
