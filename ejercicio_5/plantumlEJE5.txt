@@ -1,0 +1,32 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface FileSystem {
+  +String getNombre();
+  +LocalDate getFecha();
+  +int tamanoTotalOcupado();
+  +Archivo archivoMasGrande();
+  +Archivo archivoMasNuevo(); 
+}
+
+class Archivo implements FileSystem{
+  +<<create>> Archivo (String nombre, LocalDate fecha, int tamano)
+  +String getNombre();
+  +LocalDate getFecha();
+  +int tamanoTotalOcupado();
+  +Archivo archivoMasGrande();
+  +Archivo archivoMasNuevo(); 
+}
+
+class Directorio implements FileSystem{
+  +<<create>> Directorio(String nombre, LocalDate fecha)
+  +void agregar(FileSystem archivo)
+  +String getNombre();
+  +LocalDate getFecha();
+  +int tamanoTotalOcupado();
+  +Archivo archivoMasGrande();
+  +Archivo archivoMasNuevo(); 
+}
+
+Directorio --> FileSystem : archivos
+@enduml
