@@ -1,0 +1,29 @@
+HORAS CASADO HIJOS ANTIGUEDAD EXAMENES
+
+TEMPORARIO - 5 HORAS - Casado - 3 Hijos - 6 Años - 4 Examenes
+
+Basico: 20000+ 5 * 300 = 21500
+Adicional: 5000 + 6000 = 11000
+Descuento: 2795 + 550 = 3345
+
+Saldo: 21500+11000-3345 = 29155
+
+--------------------------------------------------
+
+PASANTE - 10 HORAS - Soltero - 0 Hijos - 2 Años - 7 Examenes
+
+Basico: 20000
+Adicional: 14000
+Descuento: 2600 + 700
+
+Saldo: 20000 + 14000 - 3300 = 30700
+
+--------------------------------------------------
+
+PLANTA - 3 HORAS - Soltero - 1 Hijo - 3 Años - 2 Examenes
+
+Basico: 50000
+Adicional: 0 + 2000 + 6000 = 8000
+Descuento: 6500 + 400 = 6900
+
+Saldo: 50000+8000-6900 = 51100

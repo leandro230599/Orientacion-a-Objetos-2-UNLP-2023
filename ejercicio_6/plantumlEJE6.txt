@@ -1,0 +1,42 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Empleado <<abstract>>{
+  - horasTrabajadas : Integer
+  - casado : Boolean
+  - hijos : Integer
+  - antiguedad : Integer
+  - examenes : Integer
+  
+  <<create>> +createEmpleado (horas: Integer, casado: Boolean, hijos: Integer, antiguedad: Integer, examenes: Integer) : Empleado
+  +getHorasTrabajadas() : Integer
+  +isCasado() : Boolean
+  +getHijos() : Integer
+  +getAntiguedad() : Integer
+  +getExamenes() : Integer
+  +sueldo() : Real
+  <<abstract>> +basico() : Real
+  <<abstract>> +adicional() : Real
+}
+
+class Temporario extends Empleado{
+  <<create>> +createTemporario (horas: Integer, casado: Boolean, hijos: Integer, antiguedad: Integer, examenes: Integer) : Temporario
+  +basico() : Real
+  +adicional() : Real
+}
+
+class Pasante extends Empleado {
+  <<create>> +createPasante (horas: Integer, casado: Boolean, hijos: Integer, antiguedad: Integer, examenes: Integer) : Pasante
+  +basico() : Real
+  +adicional() : Real
+}
+
+class Planta extends Empleado {
+  <<create>> +createPlanta (horas: Integer, casado: Boolean, hijos: Integer, antiguedad: Integer, examenes: Integer) : Planta
+  +basico() : Real
+  +adicional() : Real
+}
+
+hide circle
+@enduml
