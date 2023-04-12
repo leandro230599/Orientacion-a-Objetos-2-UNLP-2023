@@ -4,15 +4,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-public class Mixto implements Tipo {
+public class Mixto extends Topografia {
 	
-	List<Tipo> children;
+	List<Topografia> children;
 	
 	public Mixto () {
-		children = new ArrayList<Tipo>();
+		children = new ArrayList<Topografia>();
 	}
 	
-	public void add (Tipo child1, Tipo child2, Tipo child3, Tipo child4) {
+	public void add (Topografia child1, Topografia child2, Topografia child3, Topografia child4) {
 		this.children.add(child1);
 		this.children.add(child2);
 		this.children.add(child3);
@@ -26,6 +26,12 @@ public class Mixto implements Tipo {
 	
 	public Double getProporcionAgua() {
 		return (this.children.stream().mapToDouble(child -> child.getProporcionAgua()).sum()) / 4;
+	}
+
+	@Override
+	public boolean equals(Topografia t) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

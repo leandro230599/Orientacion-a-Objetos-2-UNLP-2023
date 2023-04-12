@@ -1,0 +1,43 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Topografia <<abstract>> {
+  <<abstract>> +Double getProporcionAgua()
+  <<abstract>> +Double getProporcionTierra()
+  <<abstract>> +boolean equals(Topografia t)
+}
+
+
+class Simple <<abstract>> extends Topografia{
+  <<abstract>> +Double getProporcionTierra()
+  <<abstract>> +Double getProporcionAgua()
+  <<abstract>> +boolean equals(Topografia t)
+}
+
+class Mixto extends Topografia {
+  +void add (Topografia child1, Topografia child2, Topografia child3, Topografia child4)
+  +Double getProporcionTierra()
+  +Double getProporcionAgua()
+  +boolean equals(Topografia t)
+}
+
+class Agua extends Simple {
+  +Double getProporcionTierra()
+  +Double getProporcionAgua()
+}
+
+class Tierra extends Simple {
+  +Double getProporcionTierra()
+  +Double getProporcionAgua()
+}
+
+class Pantano extends Simple {
+  +Double getProporcionTierra()
+  +Double getProporcionAgua()
+}
+
+
+Mixto --> Topografia : children 1..4
+
+hide circle
+@enduml

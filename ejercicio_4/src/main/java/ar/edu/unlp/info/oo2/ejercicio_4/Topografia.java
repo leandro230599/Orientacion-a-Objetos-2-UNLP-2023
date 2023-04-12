@@ -4,28 +4,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-public class Topografia {
-	Tipo topografias;
+public abstract class Topografia {
 	
 	
-	public void agregarTopografia(Tipo topografia) {
-		this.topografias = topografia;
-	}
-	
-	public Double getProporcionAgua() {
-		return this.topografias.getProporcionAgua();
-	}
-
-	public Double getProporcionTierra() {
-		return this.topografias.getProporcionTierra();
-	}
-	
-	public boolean equals(Topografia t) {
-		if ((t.getProporcionAgua().equals(this.topografias.getProporcionAgua())) && 
-		   (t.getProporcionTierra().equals(this.topografias.getProporcionTierra()))){
-			return true;
-		}
-		return false;
-	}
+	abstract public Double getProporcionAgua() ;
+	abstract public Double getProporcionTierra() ;
+	abstract public boolean equals(Topografia t) ;
 
 }
