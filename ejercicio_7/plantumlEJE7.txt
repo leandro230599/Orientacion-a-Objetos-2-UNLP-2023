@@ -1,0 +1,55 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class ToDoItem <<context>>{
+  - name : String
+  - start : LocalTime
+  - end : LocalTime
+  - comments : String[*]
+  
+  <<create>> +ToDoItem (name: String) : ToDoItem
+  +start() : void
+  +togglePause() : void
+  +finish() : void
+  +workedTime() : Duration
+  +addComment(comment: String) : void
+  +changeState(state : State) : void
+  +getState() : State
+  +getStart() : LocalTime
+  +getEnd() : LocalTime
+  +setStart (start : LocalTime) : void
+  +setEnd (end : LocalTime) : void
+  +getName() : String
+  +getComments() : String[*] 
+}
+
+class State <<abstract>> {
+  +start(ToDoItem todoitem) : void
+  +finish(ToDoItem todoitem) : void
+  <<abstract>> +togglePause(ToDoItem todoitem) : void
+}
+
+class Pending <<concreteStateA>> extends State {
+  +start(ToDoItem todoitem) : void
+  +togglePause(ToDoItem todoitem) : void
+}
+
+class InProgress <<concreteStateB>> extends State {
+  +togglePause(ToDoItem todoitem) : void
+  +finish(ToDoItem todoitem) : void
+}
+
+class Paused <<concreteStateC>> extends State {
+  +togglePause(ToDoItem todoitem) : void
+  +finish(ToDoItem todoitem) : void
+}
+
+class Finished <<concreteStateD>> extends State {
+  +togglePause(ToDoItem todoitem) : void
+}
+
+ToDoItem --> State : state
+
+hide circle
+@enduml
