@@ -1,0 +1,57 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Excursion <<context>> {
+  -nombre : String
+  -inicio : LocalDate
+  -fin : LocalDate
+  -puntoEncuentro : String
+  -costo : Integer
+  -cupoMinimo : Integer
+  -cupoMaximo : Integer
+
+  <<create>> + Excursion (nombre : String, inicio : LocalDate, fin : LocalDate, puntoEncuentro : String, costo : Integer, cupoMinimo : Integer, cupoMaximo : Integer)
+  +getNombre() : String
+  +getInicio() : LocalDate
+  +getFin() : LocalDate
+  +getPuntoEncuentro() : String
+  +getCosto() : Integer
+  +getCupoMinimo() : Integer
+  +getCupoMaximo() : Integer
+  +getInscriptos() : Usuario[*]
+  +getListaEspera() : Usuario[*]
+  #añadirInscripto(unUsuario : Usuario) : void
+  #añadirListaEspera(unUsuario : Usuario) : void
+  +inscribir(unUsuario : Usuario) : void
+  +obtenerInformacion() : String
+  +changeState(state : State) : void
+  
+}
+
+class State <<abstract>> {
+  +inscribir(unUsuario : Usuario, excursion : Excursion) : void
+  +obtenerInformacion(unUsuario : Usuario) : String
+}
+
+class Provisoria <<concreteStateA>> extends State {
+  +inscribir(unUsuario : Usuario, excursion : Excursion) : void
+  +obtenerInformacion(unUsuario : Usuario) : String
+}
+
+class Definitiva <<concreteStateB>> extends State {
+  +inscribir(unUsuario : Usuario, excursion : Excursion) : void
+  +obtenerInformacion(unUsuario : Usuario) : String
+}
+
+class Llena <<concreteStateC>> extends State {
+  +inscribir(unUsuario : Usuario, excursion : Excursion) : void
+}
+
+
+Excursion --> State : state
+Excursion --> Usuario : inscriptos*
+Excursion --> Usuario : listaEspera*
+
+hide circle
+@enduml
