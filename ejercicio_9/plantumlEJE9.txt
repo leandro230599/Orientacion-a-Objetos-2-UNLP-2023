@@ -1,0 +1,34 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Mensajero {
+  +enviar(mensaje : String) : void
+}
+
+class Conexion {
+  +enviar(mensaje : String) : void
+}
+
+class ConexionSegura extends Conexion {
+  +enviar(mensaje : String) : void
+}
+
+class Encriptador {
+  +encriptar(mensaje : String) : String
+}
+
+class RC4 extends Encriptador {
+  +encriptar(mensaje : String) : String
+}
+
+class Blowfish extends Encriptador{
+  +encriptar(mensaje : String) : String
+}
+
+
+Mensajero --> Conexion : conexion
+ConexionSegura --> Encriptador : encriptador
+
+hide circle
+@enduml
