@@ -1,0 +1,62 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Dispositivo <<client>> <<context>>{
+  +send(data : String) : String
+  +conectarCon(connection : Connection) : void
+  +configurarCRC(crc_calculator : CRC_Calculator) : void
+  +getConnection() : Connection
+  +getDisplay() : Display
+  +getCRCCalculator() : CRC_Calculator
+}
+
+interface Connection <<interface>> <<Strategy>>{
+  +sendData(data : String, crc : Long) : String
+  +pict() : String
+}
+
+class WifiConn <<concreteStrategyA>> implements Connection {
+  +sendData(data : String, crc : Long) : String
+  +pict() : String
+}
+
+class Adapter4G <<adapter>> <<concreteStrategyB>> implements Connection {
+  +sendData(data : String, crc : Long) : String
+  +pict() : String
+}
+
+class _4GConnection <<adaptado>>{
+  +transmit(data : String, crc : Long) : String
+  +symb() : String
+}
+
+class Ringer{
+  +ring() : void
+}
+
+class Display{
+  +showBanner(img : String) : String
+}
+
+interface CRC_Calculator <<strategy>>{
+  +crcFor(datos : String) : Long
+}
+
+class CRC16_Calculator <<concreteStrategyA>> implements CRC_Calculator{
+  +crcFor(datos : String) : Long
+}
+
+class CRC32_Calculator <<concreteStrategyB>> implements CRC_Calculator{
+  +crcFor(datos : String) : Long
+}
+
+
+Dispositivo --> Connection : connection
+Dispositivo --> Ringer : ringer
+Dispositivo --> Display : display
+Dispositivo --> CRC_Calculator : crcCalculator
+Adapter4G --> _4GConnection : _4gconnection
+
+hide circle
+@enduml
