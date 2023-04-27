@@ -8,11 +8,12 @@ public class Mixto extends Topografia {
 	
 	List<Topografia> children;
 	
-	public Mixto () {
+	public Mixto (Topografia child1, Topografia child2, Topografia child3, Topografia child4) {
 		children = new ArrayList<Topografia>();
+		this.add(child1, child2, child3, child4);
 	}
 	
-	public void add (Topografia child1, Topografia child2, Topografia child3, Topografia child4) {
+	private void add (Topografia child1, Topografia child2, Topografia child3, Topografia child4) {
 		this.children.add(child1);
 		this.children.add(child2);
 		this.children.add(child3);
@@ -29,9 +30,18 @@ public class Mixto extends Topografia {
 	}
 
 	@Override
-	public boolean equals(Topografia t) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean comparar(Topografia t) {
+		return t.compararConMixto(this);
+	}
+	
+	@Override
+	public boolean compararConMixto(Mixto mixto) {
+/*		return this.children.get(0).comparar(mixto.children.get(0)) && 
+				this.children.get(1).comparar(mixto.children.get(1)) &&
+				this.children.get(2).comparar(mixto.children.get(2)) &&
+				this.children.get(3).comparar(mixto.children.get(3));
+*/
+		return this.children.equals(mixto.children);
 	}
 
 }

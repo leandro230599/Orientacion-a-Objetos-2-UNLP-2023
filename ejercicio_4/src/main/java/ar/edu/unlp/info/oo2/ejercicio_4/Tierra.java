@@ -10,9 +10,14 @@ public class Tierra extends Simple{
 		return 0.0;
 	}
 
+	/*
 	@Override
-	public boolean equals(Topografia t) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean comparar(Topografia t) {
+		return t.compararConTierra();
 	}
+	
+	public boolean compararConTierra() {
+		return true;
+	}
+	 */
 }

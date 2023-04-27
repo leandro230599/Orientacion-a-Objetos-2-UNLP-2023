@@ -7,10 +7,5 @@ public class Paused extends State {
 	public void togglePause(ToDoItem todoitem) {
 		todoitem.changeState(new InProgress());
 	}
-	
-	public void finish(ToDoItem todoitem) {
-		todoitem.setEnd(LocalTime.now());
-		todoitem.changeState(new Finished());
-	}
 
 }

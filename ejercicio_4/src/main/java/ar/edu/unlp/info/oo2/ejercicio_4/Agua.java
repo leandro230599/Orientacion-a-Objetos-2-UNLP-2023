@@ -10,11 +10,17 @@ public class Agua extends Simple{
 		return 1.0;
 	}
 
+	/*
+	
 	@Override
-	public boolean equals(Topografia t) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean comparar(Topografia t) {
+		return t.compararConAgua();
 	}
+
+	public boolean compararConAgua() {
+		return true;
+	}
+   */
 
 
 }
