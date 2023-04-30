@@ -1,0 +1,45 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Decodificador <<context>>{
+  +<<create>> createDecodificador (grilla : Pelicula[*], reproducidas : Pelicula[*])
+  +getGrilla() : Pelicula[*]
+  +getReproducidas() : Pelicula[*]
+  +getSugerencia() : Pelicula[*]
+  +changeStrategy(criterio : Criterio)
+}
+
+class Pelicula {
+  +<<create>> createPelicula (titulo : String, ano : Integer, puntaje : Real) : Pelicula
+  +getTitulo() : String
+  +getAno() : Integer
+  +getPuntaje() : Real
+  +getSimilares() : Pelicula[*]
+  +añadirSimilar(pelicula : Pelicula) : void
+}
+
+class Criterio <<abstract>> <<Strategy>>{
+  +getSugerencia(decodificador : Decodificador) : Pelicula[*]
+  #<<abstract>> sugerir(peliculas : Pelicula[*], reproducidas : Pelicula[*]) : Pelicula[*]
+}
+
+class Novedad <<concreteStrategyA>> extends Criterio{
+  #sugerir(peliculas : Pelicula[*], reproducidas : Pelicula[*]) : Pelicula[*]
+}
+
+class Similaridad <<concreteStrategyB>> extends Criterio{
+  #sugerir(peliculas : Pelicula[*], reproducidas : Pelicula[*]) : Pelicula[*]
+}
+
+class Puntaje <<concreteStrategyC>> extends Criterio{
+  #sugerir(peliculas : Pelicula[*], reproducidas : Pelicula[*]) : Pelicula[*]
+}
+
+
+Decodificador --> Pelicula : grilla*
+Decodificador --> Pelicula : reproducidas*
+Decodificador --> Criterio : criterio
+
+hide circle
+@enduml
