@@ -6,3 +6,4 @@
 > - Ejercicio 10 crear mas tests y el UML
 > - Revisar los ejercicios del 1 al 6 si hay que corregir
 > - Arreglar y revisar los UML del 1 al 8
+> - Agregar UML eje 14 y corregir la clase FileOO2 y quitar File_Manager
