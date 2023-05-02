@@ -1,0 +1,80 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+interface Component <<interface>>{
+  +prettyPrint() : String
+  +getNombre() : String
+  +getExtension() : String
+  +getTamano() : Integer
+  +getFecha_creacion() : String
+  +getFecha_modificacion() : String
+  +getPermisos() : String
+
+}
+
+class FileOO2 implements Component {
+  -nombre : String
+  -extension : String
+  -tamano : Integer
+  -fecha_creacion : String
+  -fecha_modificacion : String
+  -permisos : String
+
+  +<<create>> createFileOO2 (nombre : String, extension : String, tamano : Integer, fecha_creacion : String, fecha_modificacion : String, permisos : String) : FileOO2
+  +prettyPrint() : String
+  +getNombre() : String
+  +getExtension() : String
+  +getTamano() : Integer
+  +getFecha_creacion() : String
+  +getFecha_modificacion() : String
+  +getPermisos() : String
+
+}
+
+class Decorator <<abstract>> implements Component{
+  -wrapper : Component
+
+  +<<create>> createDecorator(wrapper : Component) : Decorator
+  +prettyPrint() : String
+  +getNombre() : String
+  +getExtension() : String
+  +getTamano() : Integer
+  +getFecha_creacion() : String
+  +getFecha_modificacion() : String
+  +getPermisos() : String
+  +<<abstract>> print() : String
+
+}
+
+class DecoratorNombre <<concreteDecorator>> extends Decorator {
+  +<<create>> createDecoratorNombre (wrapper : Component) : DecoratorNombre
+  +print() : String
+}
+
+class DecoratorExtencion <<concreteDecorator>> extends Decorator {
+  +<<create>> createDecoratorExtencion (wrapper : Component) : DecoratorExtencion
+  +print() : String
+}
+
+class DecoratorFechaCreacion <<concreteDecorator>> extends Decorator {
+  +<<create>> createDecoratorFechaCreacion (wrapper : Component) : DecoratorFechaCreacion
+  +print() : String
+}
+
+class DecoratorFechaModificacion <<concreteDecorator>> extends Decorator {
+  +<<create>> createDecoratorFechaModificacion (wrapper : Component) : DecoratorFechaModificacion
+  +print() : String
+}
+
+class DecoratorPermisos <<concreteDecorator>> extends Decorator {
+  +<<create>> createDecoratorPermisos (wrapper : Component) : DecoratorPermisos
+  +print() : String
+}
+
+class DecoratorTamano <<concreteDecorator>> extends Decorator {
+  +<<create>> createDecoratorTamano (wrapper : Component) : DecoratorTamano
+  +print() : String
+}
+hide circle
+@enduml

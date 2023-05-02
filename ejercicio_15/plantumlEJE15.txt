@@ -1,0 +1,79 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+interface Component <<interface>>{
+  +getTemperaturaFahrenheit() : Real
+  +getPresion() : Real
+  +getRadiacionSolar() : Real
+  +getTemperaturasFahrenheit() : Real[*]
+  +getTemperaturaCelcius() : Real
+  +getPromedioHistorico() : Real
+  +displayData() : String
+}
+
+class HomeWeatherStation {
+  -fahrenheit : Real
+  -presion : Real
+  -radiacion : Real
+  -historico : Real[*]
+
+  +<<create>> createHomeWeatherStation (fahrenheit : Real, presion : Real, radiacion : Real, historico : Real[*]) : HomeWeatherStation
+  +getTemperaturaFahrenheit() : Real
+  +getPresion() : Real
+  +getRadiacionSolar() : Real
+  +getTemperaturasFahrenheit() : Real[*]
+}
+
+class Estacion_Meteorologica extends HomeWeatherStation implements Component{
+  +<<create>> createEstacion_Meteorologica (fahrenheit : Real, presion : Real, radiacion : Real, historico : Real[*]) : Estacion_Meteorologica
+  +getTemperaturaCelcius() : Real
+  +getPromedioHistorico() : Real
+  +displayData() : String
+}
+
+class Decorator <<abstract>> implements Component{
+  -wrapper : Component
+
+  +<<create>> createDecorator(wrapper : Component) : Decorator
+  +getTemperaturaFahrenheit() : Real
+  +getPresion() : Real
+  +getRadiacionSolar() : Real
+  +getTemperaturasFahrenheit() : Real[*]
+  +getTemperaturaCelcius() : Real
+  +getPromedioHistorico() : Real
+  +displayData() : String
+  +<<abstract>> print() : String
+}
+
+class DecoratorListTemperaturasFahrenheit <<ConcreteDecorator>> extends Decorator{
+  +<<create>> createDecoratorListTemperaturasFahrenheit (wrapper : Component) : DecoratorListTemperaturasFahrenheit
+  +print() : String
+}
+
+class DecoratorPresion <<ConcreteDecorator>> extends Decorator{
+  +<<create>> createDecoratorPresion (wrapper : Component) : DecoratorPresion
+  +print() : String
+}
+
+class DecoratorPromedioHistorico <<ConcreteDecorator>> extends Decorator{
+  +<<create>> createDecoratorPromedioHistorico (wrapper : Component) : DecoratorPromedioHistorico
+  +print() : String
+}
+
+class DecoratorTemperaturaCelcius <<ConcreteDecorator>> extends Decorator{
+  +<<create>> createDecoratorTemperaturaCelcius (wrapper : Component) : DecoratorTemperaturaCelcius
+  +print() : String
+}
+
+class DecoratorRadiacionSolar <<ConcreteDecorator>> extends Decorator{
+  +<<create>> createDecoratorRadiacionSolar (wrapper : Component) : DecoratorRadiacionSolar
+  +print() : String
+}
+
+class DecoratorTemperaturaFahrenheit <<ConcreteDecorator>> extends Decorator{
+  +<<create>> createDecoratorTemperaturaFahrenheit (wrapper : Component) : DecoratorTemperaturaFahrenheit
+  +print() : String
+}
+hide circle
+@enduml
