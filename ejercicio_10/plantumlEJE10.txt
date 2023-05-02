@@ -1,0 +1,58 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Proyecto {
+  -nombre : String
+  -inicio : LocalDate
+  -fin : LocalDate
+  -objetivo : String
+  -integrantes : Integer
+  -monto : Real
+  -margen : Integer
+
+  +getNombre() : String
+  +getInicio() : LocalDate
+  +getFin() : LocalDate
+  +getObjetivo() : String
+  +getIntegrantes() : Integer
+  +getMonto() : Real
+  +getMargen() : Integer
+  +setObjetivo(objetivo : String) : void
+  +getState() : State
+  +changeState(state : State) : void
+  +crearProyecto(nombre : String, inicio : LocalDate, fin : LocalDate, objetivo : String, integrantes : Integer, monto : Real, margen : Integer)
+  +aprobarEtapa() : void
+  +costoProyecto() : Real
+  +precioProyecto() : Real
+  +cambiarMargen(margen : Integer) : void
+  +changeMargen(margen : Integer) : void
+  +cancelarProyecto() : void
+}
+
+class State <<abstract>> {
+  +aprobarEtapa(proyecto : Proyecto) : void
+  +cambiarMargen(margen : Integer, proyecto : Proyecto) : void
+  +cancelarProyecto(proyecto : Proyecto) : void
+}
+
+class Construccion <<concreteState>> extends State{
+  +aprobarEtapa(proyecto : Proyecto) : void
+  +cambiarMargen(margen : Integer, proyecto : Proyecto) : void
+}
+
+class Evaluacion <<concreteState>> extends State{
+  +aprobarEtapa(proyecto : Proyecto) : void
+  +cambiarMargen(margen : Integer, proyecto : Proyecto) : void
+}
+
+class Confirmado <<concreteState>> extends State{
+}
+
+class Cancelado <<concreteState>> extends State{
+  +cancelarProyecto(proyecto : Proyecto) : void
+}
+
+Proyecto --> State : state
+hide circle
+@enduml

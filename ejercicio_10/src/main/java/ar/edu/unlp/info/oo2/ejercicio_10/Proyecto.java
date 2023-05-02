@@ -70,7 +70,7 @@ public class Proyecto {
 	}
 	
 	public double costoProyecto() {
-		return ((int) ChronoUnit.DAYS.between(this.getInicio(), this.getFin())) * this.getIntegrantes();
+		return ((int) ChronoUnit.DAYS.between(this.getInicio(), this.getFin())) * (this.getIntegrantes() * this.getMonto());
 	}
 	
 	public double precioProyecto() {
@@ -83,6 +83,10 @@ public class Proyecto {
 	
 	public void changeMargen(int margen) {
 		this.margen = margen;
+	}
+	
+	public void cancelarProyecto() {
+		this.state.cancelarProyecto(this);
 	}
 	
 }

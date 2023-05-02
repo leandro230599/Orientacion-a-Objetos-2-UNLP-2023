@@ -33,8 +33,6 @@ class Estacion_Meteorologica extends HomeWeatherStation implements Component{
 }
 
 class Decorator <<abstract>> implements Component{
-  -wrapper : Component
-
   +<<create>> createDecorator(wrapper : Component) : Decorator
   +getTemperaturaFahrenheit() : Real
   +getPresion() : Real
@@ -75,5 +73,8 @@ class DecoratorTemperaturaFahrenheit <<ConcreteDecorator>> extends Decorator{
   +<<create>> createDecoratorTemperaturaFahrenheit (wrapper : Component) : DecoratorTemperaturaFahrenheit
   +print() : String
 }
+
+
+Decorator --> Component : wrapper
 hide circle
 @enduml

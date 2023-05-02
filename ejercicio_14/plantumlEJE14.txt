@@ -33,7 +33,6 @@ class FileOO2 implements Component {
 }
 
 class Decorator <<abstract>> implements Component{
-  -wrapper : Component
 
   +<<create>> createDecorator(wrapper : Component) : Decorator
   +prettyPrint() : String
@@ -76,5 +75,7 @@ class DecoratorTamano <<concreteDecorator>> extends Decorator {
   +<<create>> createDecoratorTamano (wrapper : Component) : DecoratorTamano
   +print() : String
 }
+
+Decorator --> Component : wrapper
 hide circle
 @enduml
