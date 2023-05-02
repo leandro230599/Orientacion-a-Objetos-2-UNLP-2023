@@ -28,10 +28,11 @@ public class MediaPlayerTest {
     	mediaplayer.addMedia(new VideoFile());
         assertEquals(mediaplayer.getMedia().size(), 7);        
     }
-    @Test
+    /* NO SE DEBE TESTEAR CON SOUT's, usar assertEquals o assertTrue o assertFalse pero no sirve con SOUT's
+     * @Test
     public void testSout() {
     	for (Media media : mediaplayer.getMedia()) {
 			System.out.println(media.play());
 		}
-    }
+    }*/
 }
