@@ -8,17 +8,23 @@ interface DatabaseAccess <<interface>>{
 }
 
 class DatabaseRealAccess implements DatabaseAccess {
+  -currentId : Integer
+  -<<HashMap(String, String[*])>> data
+
   +<<create>> createDatabaseRealAccess() : DatabaseRealAccess
   +getSearchResults(queryString : String) : String[*]
   +insertNewRow(rowData : String[*]) : Integer
 }
 
 class DatabaseRealAccessProxy implements DatabaseAccess {
+  -login : Boolean
+
   +<<create>> createDatabaseRealAccessProxy(login : Boolean) : DatabaseRealAccessProxy
   +getSearchResults(queryString : String) : String[*]
   +insertNewRow(rowData : String[*]) : Integer
   -checkAccess() : Boolean
 }
 
+DatabaseRealAccessProxy --> DatabaseRealAccess : database
 hide circle
 @enduml

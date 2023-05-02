@@ -9,3 +9,4 @@
 > ### Tareas pendientes
 >
 > - Revisar bien el 4 la implementacion para comprender lo de doble dispatch
+> - Arrglar UML eje 13
