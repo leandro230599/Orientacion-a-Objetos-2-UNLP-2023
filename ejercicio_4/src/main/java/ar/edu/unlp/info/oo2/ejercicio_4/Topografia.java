@@ -17,6 +17,7 @@ public abstract class Topografia {
 	public boolean compararConTierra() {
 		return false;
 	}
+	
 	public boolean compararConMixto(Mixto mixto) {
 		return false;
 	}

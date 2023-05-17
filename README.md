@@ -10,3 +10,4 @@
 >
 > - Revisar bien el 4 la implementacion para comprender lo de doble dispatch
 > - Arrglar UML eje 13
+> - Agregar UML del eje 19 y test, y leer bien lo de doble dispatch
