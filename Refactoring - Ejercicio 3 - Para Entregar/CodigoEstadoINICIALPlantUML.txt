@@ -1,0 +1,64 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Persoonal {
+  ~{static} descuentoJur : Real
+  ~{static} descuentoFis : Real
+
+  + agregarTelefono (str : String) : Boolean
+  + registrarUsuario (data : String, nombre : String, t : String) : Persoona
+  + eliminarUsuario (p : Persoona) : Boolean
+  + registrarLlamada (q : Persoona, q2 : Persoona, t : String, d : Integer) : Llamada
+  + calcularMontoTotalLlamadas (p : Persoona) : Real
+  + cantidadDeUsuarios () : Integer
+  + existeUsuario (persona : Persoona) : Boolean
+}
+
+class Persoona {
+  - t : String
+  - nya : String
+  - tel : String
+  - cuit : String
+  - doc : String
+
+  + getLista1 () : Llamada[*]
+  + setLista1 (lista1 : Llamada[*]) : void
+  + getT () : String
+  + setT (t : String) : void
+  + getNya () : String
+  + setNya (nya : String) : void
+  + getTel () : String
+  + setTel (tel : String) : void
+  + getCuit () : String
+  + setCuit (cuit : String) : void
+  + getDoc () : String
+  + setDoc (doc : String) : void
+}
+
+class Llamada {
+  # tipoDeLlamada : String
+  - emisor : String
+  - remitente : String
+  + dur : Integer
+
+  +<<create>> createLlamada () : Llamada
+  +<<create>> createLlamada (s : String, p : String, p2 : String, p3 : Persoona, dur : Integer) : Llamada
+  + getTipoDeLlamada () : String
+  + setTipoDeLlamada (tipoDeLlamada : String) : void
+  + setEmisor (q : String) : void
+  + getRemitente () : String
+  + setRemitente (remitente : String) : void
+}
+
+class GuiaTelefonica {
+  + guia : String[*]
+}
+
+Persoonal --> Persoona : ~lista1*
+Persoonal --> Llamada : ~lista2*
+Persoonal --> GuiaTelefonica : ~lista3
+Persoona --> Llamada : +lista1*
+Persoona --> Persoonal : +sis
+hide circle
+@enduml

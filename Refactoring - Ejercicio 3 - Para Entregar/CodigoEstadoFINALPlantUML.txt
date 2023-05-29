@@ -1,0 +1,75 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Sistema {
+  -guiaTelefonica : String[*]
+
+  + agregarTelefono (str : String) : Boolean
+  - agregarTelefonoYRetorna (str : String) : Boolean
+  + obtenerUltimoElemento () : String
+  + registrarPersonaFisica (documento : String, fullName : String) : Persona
+  + registrarPersonaJuridica (cuit : String, fullName : String) : Persona
+  + eliminarUsuario (personaBorrar : Persona) : Boolean
+  + registrarLlamadaNacional (emisor : Persona, remitente : Persona, duracion : Integer) : Llamada
+  + registrarLlamadaInternacional (emisor : Persona, remitente : Persona, duracion : Integer) : Llamada
+  - agregarLlamadasAListas (emisor : Persona, llamada : Llamada) : Llamada
+  + calcularMontoTotalLlamadas (p : Persona) : Real
+  + cantidadDeUsuarios () : Integer
+  + existeUsuario (persona : Persoona) : Boolean
+}
+
+class Persona <<abstract>>{
+  - nombreYapellido : String
+  - telefono : String
+
+  + <<create>> createPersona (fullname : String, telefono : String) : Persona
+  + getLlamadasRealizadas() : Llamada[*]
+  + getTelefono () : String
+  + calcularMontoTotalLlamadas() : Real
+  + agregarLlamadaRealizada(llamada : Llamada) : Llamada
+  + <<abstract>> getDescuento() : Real
+}
+
+class PersonaFisica extends Persona {
+  - documento : String
+  - {static} descuentoFisico : Real
+
+  + <<create>> createPersonaFisica (fullname : String, telefono : String, documento : String) : PersonaFisica  
+  + getDescuento() : Real
+}
+
+class PersonaJuridica extends Persona {
+  - cuit : String
+  - {static} descuentoJuridico : Real
+
+  + <<create>> createPersonaJuridica (fullname : String, telefono : String, cuit : String) : PersonaJuridica 
+  + getDescuento() : Real
+}
+
+class Llamada <<abstract>> {
+  - emisor : String
+  - remitente : String
+  - duracion : Integer
+  - {static} valorFijo : Real
+
+  +<<create>> createLlamada (emisor : String, remitente : String, duracion : Integer) : Llamada
+  + getCostoLlamada () : Real
+  + <<abstract>> getCosto() : Real
+}
+
+class LlamadaNacional extends Llamada {
+  +<<create>> createLlamadaNacional (emisor : String, remitente : String, duracion : Integer) : LlamadaNacional
+  + getCosto() : Real
+}
+
+class LlamadaInternacional extends Llamada {
+  +<<create>> createLlamadaInternacional (emisor : String, remitente : String, duracion : Integer) : LlamadaInternacional
+  + getCosto() : Real
+}
+
+Sistema --> Persona : -listaClientes*
+Sistema --> Llamada : -listaLlamadas*
+Persona --> Llamada : -llamadasRealizadas*
+hide circle
+@enduml
