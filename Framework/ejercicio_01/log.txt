@@ -1,0 +1,1 @@
+ { "message": "Acceso valido para busquedas en la DB!", "level": "INFO" }  { "message": "Acceso valido para busquedas en la DB!", "level": "INFO" }  { "message": "Acceso valido para inserciones en la DB!", "level": "WARNING" }  { "message": "Acceso valido para busquedas en la DB!", "level": "INFO" } 
